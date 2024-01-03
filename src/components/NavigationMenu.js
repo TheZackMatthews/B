@@ -2,30 +2,34 @@
 
 import React from "react";
 import "../App.css";
-import { Link } from "react-router-dom";
+import FaqDropdown from "./FaqDropdown";
+import { Link, useLocation } from "react-router-dom";
 
 const NavigationMenu = () => {
+  const location = useLocation();
+  const currentPage = location.pathname.substring(1); // Remove the leading '/'
+  
+  const queryParams = new URLSearchParams(location.search); // Access specific query parameters
+  const name = queryParams.get("name");
+
+
+  const renderNavItem = (label, path, dropdown = null) => {
+    return currentPage !== path ? (
+      <li key={label} className={dropdown ? "has-dropdown" : ""}>
+        <Link to={`/${path}?name=${name}`}>{label}</Link>
+        {dropdown}
+      </li>
+    ) : null;
+  };
+
   return (
     <nav>
       <ul>
-        <li>
-          <Link to="/rsvp">RSVP</Link>
-        </li>
-        <li>
-          <Link to="/location">Location</Link>
-        </li>
-        <li>
-          <Link to="/schedule">Schedule</Link>
-        </li>
-        <li>
-          <Link to="/registry">Registry</Link>
-        </li>
-        <li>
-          <Link to="/playlist">Playlist</Link>
-        </li>
-        <li>
-          <Link to="/faq">FAQ</Link>
-        </li>
+        {renderNavItem("Home", "")}
+        {renderNavItem("Location", "location")}
+        {renderNavItem("FAQ", "faq", <FaqDropdown />)}
+        {renderNavItem("Playlist", "playlist")}
+        {renderNavItem("Registry", "registry")}
       </ul>
     </nav>
   );

@@ -1,7 +1,13 @@
 import React from "react";
+import NavigationMenu from "./NavigationMenu";
 
 const Location = () => {
-  return <div>Location</div>;
+  return (
+    <div className="banner-content">
+      <NavigationMenu />
+      Location
+    </div>
+  );
 };
 
 export default Location;

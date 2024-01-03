@@ -1,13 +1,13 @@
 import React from "react";
 import NavigationMenu from "./NavigationMenu";
 
-const Registry = () => {
+const NoMatch = () => {
   return (
     <div className="banner-content">
       <NavigationMenu />
-      Registry
+      NoMatch
     </div>
   );
 };
 
-export default Registry;
+export default NoMatch;

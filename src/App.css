@@ -1,8 +1,32 @@
 /* App.css */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
 
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
+  color: #fff;
+  background-color: #182a57;
+}
+
+.Title {
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  position: relative;
+  height: 300px; /* Set your preferred height */
+}
+
+.banner-content {
+  background-image: url('../public/MSP.jpeg');
+  background-size: cover;
+  max-height: 564px;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.banner-subtext {
+  max-width: 40%;
+  padding-left: 2em;
 }
 
 ul {
@@ -17,5 +41,69 @@ li {
 }
 
 a {
+  color: #fff;
   text-decoration: none;
+}
+
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: flex;
+  align-self: center;
+  padding: 10px 20px;
+  color: white;
+  border: 2px solid #555;
+  text-decoration: none;
+  font-size: 1em;
+  max-width: 8rem;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #555;
+}
+
+/* FAQ Dropdown */
+.faq-dropdown {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  z-index: 1;
+}
+
+.has-dropdown:hover .faq-dropdown {
+  display: block;
+}
+
+.faq-dropdown a {
+  display: block;
+  padding: 5px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.faq-dropdown a:hover {
+  background-color: #f0f0f0;
+}
+
+/* FAQ Page */
+.faq-container {
+  padding: 1em;
+}
+
+.faq-question {
+  padding-top: 2.5rem;
 }
