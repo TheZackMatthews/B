@@ -12,32 +12,64 @@ body {
   text-align: center;
   font-family: 'Dancing Script', cursive;
   position: relative;
-  height: 300px; /* Set your preferred height */
+  height: 50px; /* Set your preferred height */
 }
 
 .banner-content {
   background-image: url('../public/MSP.jpeg');
   background-size: cover;
-  max-height: 564px;
+  min-height: 564px;
   background-position: center;
   display: flex;
+  align-items: center;
   flex-direction: column;
 }
 
+nav {
+  border-top: 4px solid #333;
+  border-bottom: 4px solid #333;
+  margin: 10px;
+}
+
 .banner-subtext {
-  max-width: 40%;
-  padding-left: 2em;
+  padding-top: 20%;
+  text-align: center;
 }
 
 ul {
-  padding: 10px;
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+}
+
+nav ul {
   justify-content: space-around;
 }
 
-li {
+nav li {
   flex-direction: row;
   list-style-type: none;
+  padding: 12px;
+}
+
+.nav-tabs {
+  padding: 0;
+}
+
+.nav-tabs li {
+  flex-direction: row;
+  list-style-type: none;
+  padding: 8px;
+  border-right: 2px solid #333;
+}
+
+.nav-tabs li:last-child  {
+  flex-direction: row;
+  list-style-type: none;
+  padding: 8px;
+  border-right: none;
 }
 
 a {
@@ -69,7 +101,9 @@ p {
   transition: background-color 0.3s;
 }
 
-.btn:hover {
+.btn:hover, li:hover {
+  -webkit-transition: background 0.3s; /* For Safari 3.0 to 6.0 */
+  transition: background 0.3s; /* For modern browsers */
   background-color: #555;
 }
 
@@ -106,4 +140,23 @@ p {
 
 .faq-question {
   padding-top: 2.5rem;
+}
+
+.tab-content {
+  padding: 1em;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+@keyframes tab-expanding {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.tab-expanding li {
+  width: 100%;
 }

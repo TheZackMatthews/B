@@ -19,8 +19,8 @@ const Home = () => {
           RSVP Now
         </Link>
       <p className="banner-subtext">
-        We are taking the next step of our adventure, and we can't wait to
-        celebrate with you
+        We are taking the next step in our adventure, and we can't wait to
+        celebrate with you!
       </p>
       </div>
     </div>

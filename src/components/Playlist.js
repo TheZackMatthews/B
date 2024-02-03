@@ -1,6 +1,7 @@
 import React from "react";
 import NavigationMenu from "./NavigationMenu";
 
+// TODO: Add a form at the bottom to request songs be added
 const Playlist = () => {
   return (
     <div className="banner-content">
