@@ -2,7 +2,6 @@
 
 import React from "react";
 import "../App.css";
-import FaqDropdown from "./FaqDropdown";
 import { Link, useLocation } from "react-router-dom";
 
 const NavigationMenu = () => {
@@ -13,9 +12,8 @@ const NavigationMenu = () => {
 
 
   const renderNavItem = (label, path, dropdown = null) => {
-    return <li key={label} className={dropdown ? "has-dropdown" : ""}>
+    return <li key={label}>
         <Link to={`/${path}?name=${name}`}>{label}</Link>
-        {dropdown}
       </li>;
   };
 
@@ -24,7 +22,7 @@ const NavigationMenu = () => {
       <ul>
         {renderNavItem("Home", "")}
         {renderNavItem("Location & Travel", "location")}
-        {renderNavItem("FAQ", "faq", <FaqDropdown />)}
+        {renderNavItem("FAQ", "faq")}
         {renderNavItem("Playlist", "playlist")}
         {renderNavItem("Registry", "registry")}
       </ul>

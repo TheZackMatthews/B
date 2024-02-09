@@ -5,7 +5,7 @@ body {
   margin: 0;
   font-family: 'Arial', sans-serif;
   color: #fff;
-  background-color: #182a57;
+  background-color: #ddd;
 }
 
 .Title {
@@ -16,13 +16,22 @@ body {
 }
 
 .banner-content {
-  background-image: url('../public/MSP.jpeg');
+  background-image: url('../public/kiss.jpeg');
   background-size: cover;
-  min-height: 564px;
+  background-attachment: fixed;
   background-position: center;
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.banner-content-travel {
+  background-image: url('../public/AdventureBlanketLane.jpg');
+  color: #333;
+}
+
+.banner-content-travel a {
+  color: #333;
 }
 
 nav {
@@ -38,7 +47,7 @@ nav {
 
 ul {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-wrap: wrap;
   align-items: center;
   margin: 0;
@@ -55,21 +64,31 @@ nav li {
 }
 
 .nav-tabs {
-  padding: 0;
+  padding: 3em 0;
 }
 
 .nav-tabs li {
   flex-direction: row;
+  display: block;
+  padding: 10px 15px;
   list-style-type: none;
-  padding: 8px;
-  border-right: 2px solid #333;
+  padding: 0;
+  border: 2px solid #333;
+  color: #000;
+  background-color: #ddd;
+  border-radius: 5px;
 }
 
-.nav-tabs li:last-child  {
-  flex-direction: row;
-  list-style-type: none;
+.nav-tabs li p {
   padding: 8px;
-  border-right: none;
+}
+
+p, a {
+  font-size: 120%;
+}
+
+.banner-content-travel p, .banner-content a {
+  font-size: 100%;
 }
 
 a {
@@ -83,7 +102,11 @@ h1 {
   margin-bottom: 10px;
 }
 
-p {
+h3 {
+  color: #fff
+}
+
+nav p {
   font-size: 1.2em;
   margin-bottom: 20px;
 }
@@ -95,16 +118,30 @@ p {
   color: white;
   border: 2px solid #555;
   text-decoration: none;
+  text-align: center;
   font-size: 1em;
   max-width: 8rem;
   border-radius: 5px;
   transition: background-color 0.3s;
 }
 
-.btn:hover, li:hover {
+.banner-content-travel .btn {
+  color: #333;
+  background-color: #ddd;
+}
+
+.banner-content-travel a strong {
+  background: gray;
+}
+
+.btn:hover {
   -webkit-transition: background 0.3s; /* For Safari 3.0 to 6.0 */
   transition: background 0.3s; /* For modern browsers */
   background-color: #555;
+}
+
+.banner-content-travel {
+  transition: none;
 }
 
 /* FAQ Dropdown */
@@ -117,8 +154,13 @@ p {
   z-index: 1;
 }
 
-.has-dropdown:hover .faq-dropdown {
+.faq-dropdown {
   display: block;
+}
+
+.spotify-embed {
+  padding: 2em;
+  border: none;
 }
 
 .faq-dropdown a {
@@ -136,6 +178,7 @@ p {
 /* FAQ Page */
 .faq-container {
   padding: 1em;
+  width: 75vw;
 }
 
 .faq-question {
@@ -144,17 +187,13 @@ p {
 
 .tab-content {
   padding: 1em;
+  max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-out;
+  transition: max-height 0.4s ease-out;
 }
 
-@keyframes tab-expanding {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
+.tab-content.expanded {
+  max-height: 900px;
 }
 
 .tab-expanding li {

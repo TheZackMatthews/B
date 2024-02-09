@@ -13,15 +13,17 @@ const Home = () => {
   return (
     <div>
       <div className="banner-content">
-      <NavigationMenu />
-      <h1 className="Title">Zack & Lane</h1>
+        <NavigationMenu />
+        <div style={{ height: "15vh" }}></div>
+        <h1 className="Title">Zack & Lane</h1>
         <Link to={`/rsvp?name=${name}`} className="btn">
           RSVP Now
         </Link>
-      <p className="banner-subtext">
-        We are taking the next step in our adventure, and we can't wait to
-        celebrate with you!
-      </p>
+        <p className="banner-subtext">
+          We are taking the next step in our adventure, and we can't wait to
+          celebrate with you!
+        </p>
+        <div style={{ height: "45vh" }}></div>
       </div>
     </div>
   );

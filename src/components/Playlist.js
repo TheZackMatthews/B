@@ -9,10 +9,11 @@ const Playlist = () => {
       Playlist
       <iframe
         title="Wedding playlist"
+        className="spotify-embed"
         src="https://open.spotify.com/embed/playlist/37i9dQZF1EIgiz8Fu77U50?utm_source=generator"
-        width="100%"
+        width="90%"
         height="650"
-        allowfullscreen=""
+        allowFullScreen=""
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy"
       ></iframe>
