@@ -6,7 +6,6 @@ const Playlist = () => {
   return (
     <div className="banner-content">
       <NavigationMenu />
-      Playlist
       <iframe
         title="Wedding playlist"
         className="spotify-embed"

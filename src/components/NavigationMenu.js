@@ -8,12 +8,12 @@ const NavigationMenu = () => {
   const location = useLocation();
   
   const queryParams = new URLSearchParams(location.search); // Access specific query parameters
-  const name = queryParams.get("name");
+  const email = queryParams.get("email");
 
 
   const renderNavItem = (label, path, dropdown = null) => {
     return <li key={label}>
-        <Link to={`/${path}?name=${name}`}>{label}</Link>
+        <Link to={`/${path}?email=${email}`}>{label}</Link>
       </li>;
   };
 
