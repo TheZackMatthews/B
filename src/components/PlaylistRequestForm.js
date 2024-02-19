@@ -19,8 +19,8 @@ const PlaylistRequestForm = () => {
   });
 
   return (
-    <div style={{ width: "90%" }}>
-      <h1>Playlist Request Form</h1>
+    <div style={{ width: "90%", marginBottom: "30px" }}>
+      <h2>Playlist Request Form</h2>
       <Formik
         initialValues={{
           selection: "",

@@ -19,7 +19,7 @@ const FAQ = () => {
       <NavigationMenu />
       <div style={{ height: "15vh" }}></div>
       <div className="faq-container">
-        <h1>Frequently Asked Questions</h1>
+        <h2>Frequently Asked Questions</h2>
         <div className="faq-question">
           <h2 id="what-to-wear">Is there a dress code for this event?</h2>
           <p>
