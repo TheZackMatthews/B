@@ -81,7 +81,7 @@ const FAQ = () => {
           </p>
           <p>
             However, we encourage you to take photos before the ceremony and
-            after the reception. Feel free to snap away and capture memories
+            during the reception. Feel free to snap away and capture memories
             with friends and family during these times. We want everyone to
             enjoy the celebration to the fullest, and your personal photos will
             complement the professional shots beautifully.

@@ -224,7 +224,9 @@ const Location = () => {
                 <li>
                   Reservations can be made via phone (1.800.872.7245) or on the
                   web&nbsp;
-                  <a href="https://www.amtrak.com/">www.amtrak.com</a>
+                  <a href="https://www.amtrak.com/">
+                    <strong>www.amtrak.com</strong>
+                  </a>
                 </li>
                 <li>
                   Icicle Station Shuttle Service provided by Leavenworth Shuttle

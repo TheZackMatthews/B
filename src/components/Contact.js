@@ -2,11 +2,11 @@ import React from "react";
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
 
-function Contact({ firstName, lastName, email, rsvp, toggleRSVP, setEdit }) {
+function Contact({ contact, setSpreadsheetValue, toggleRSVP, setEdit }) {
   const handleCheckboxClick = () => {
     toggleRSVP();
+    setSpreadsheetValue(contact);
     console.log("hello world");
-    // Save RSVP to server
   };
 
   return (
@@ -14,7 +14,7 @@ function Contact({ firstName, lastName, email, rsvp, toggleRSVP, setEdit }) {
       className="contact-card"
       style={{
         border: "3px solid #333",
-        background: rsvp ? "green" : "#800020",
+        background: contact.rsvp ? "green" : "#800020",
         borderRadius: "10px",
         padding: "10px",
         margin: "5vh 0",
@@ -34,11 +34,11 @@ function Contact({ firstName, lastName, email, rsvp, toggleRSVP, setEdit }) {
         }}
       >
         <p>
-          {firstName} {lastName}
+          {contact.firstName} {contact.lastName}
         </p>
       </div>
       <div className="email">
-        <p>{email}</p>
+        <p>{contact.email}</p>
         <div
           style={{
             display: "flex",
@@ -49,7 +49,7 @@ function Contact({ firstName, lastName, email, rsvp, toggleRSVP, setEdit }) {
           <div>
             <label>RSVP</label>
             <Checkbox
-              checked={rsvp}
+              checked={contact?.rsvp}
               onClick={handleCheckboxClick}
               inputProps={{ "aria-label": "RSVP checkbox" }}
               style={{ color: "white" }}
