@@ -1,7 +1,13 @@
 import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import Button from "@mui/material/Button";
 import NavigationMenu from "./NavigationMenu";
 
 const FAQ = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const email = queryParams.get("email");
+
   useEffect(() => {
     // Check if the URL contains a hash (e.g., #what-to-wear)
     const hash = window.location.hash;
@@ -89,7 +95,18 @@ const FAQ = () => {
         </div>
         <div className="faq-question">
           <h2 id="rsvp">How do I RSVP?</h2>
-          <p>Answer to the question "How do I RSVP?" goes here.</p>
+          <p>Navigate to our RSVP page, and simply check the checkbox. When you're good to go, the background will change to green. For help manually updating or verifying RSVP status, reach out to Zack.</p>
+          <Link to={`/rsvp?email=${email}`}>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              className="edit-button"
+              style={{ background: "#333" }}
+            >
+              RSVP Now
+            </Button>
+          </Link>
         </div>
         <div className="faq-question">
           <h2 id="rsvp">
@@ -124,23 +141,22 @@ const FAQ = () => {
           <p>
             While we're keeping our fingers crossed for perfect weather on our
             special day, we do have a contingency plan in place in case of
-            inclement weather.
-            If serious rain or heavy smoke threatens the event,
-            we'll move the celebration indoors to the upstairs of the barn at Pine
-            Rivers Ranch. 
-          </p> 
+            inclement weather. If serious rain or heavy smoke threatens the
+            event, we'll move the celebration indoors to the upstairs of the
+            barn at Pine Rivers Ranch.
+          </p>
           <p>
-            In the event of light rain, we've seen parties at this
-            venue complete their ceremonies outdoors with the use of umbrellas,
-            adding a unique and charming touch to the occasion. We recommend
-            checking the forecast the week of the event for any updates or changes
-            to our plans.
-          </p> 
+            In the event of light rain, we've seen parties at this venue
+            complete their ceremonies outdoors with the use of umbrellas, adding
+            a unique and charming touch to the occasion. We recommend checking
+            the forecast the week of the event for any updates or changes to our
+            plans.
+          </p>
           <p>
-            Rest assured, we're prepared to ensure that our
-            celebration goes smoothly regardless of the weather. Your safety and
-            comfort are our top priorities, and we'll do everything we can to make
-            sure you have a wonderful experience.
+            Rest assured, we're prepared to ensure that our celebration goes
+            smoothly regardless of the weather. Your safety and comfort are our
+            top priorities, and we'll do everything we can to make sure you have
+            a wonderful experience.
           </p>
         </div>
         <div style={{ height: "15vh" }}></div>

@@ -1,17 +1,54 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import * as Yup from "yup";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const PlaylistRequestForm = () => {
   const [requestHeading, setRequestHeading] = useState("");
   const [suggestion, setSuggestion] = useState("");
 
-  const handleSubmit = (values, actions) => {
-    // Handle form submission logic here
-    console.log("Form submitted:", values);
-    actions.setSubmitting(false);
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const initEmail = queryParams.get("email");
+
+  const handleSubmit = async (values, {setSubmitting, resetForm}) => {
+    switch (values.selection) {
+      case "collaborator": {
+        await fetch(`${process.env.baseURL}/music/collaborator`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: suggestion }),
+        }).then(function (response) {
+          // Parse the data into a useable format using `.json()`
+          return response.json();
+        });
+        break;
+      }
+      case "generalSuggestion":
+        case "songSuggestion": {
+        await fetch(`${process.env.baseURL}/music/song`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ suggestion: suggestion, email: initEmail }),
+        }).then(function (response) {
+          // Parse the data into a useable format using `.json()`
+          return response.json();
+        });
+        break;
+      }
+      default: {
+        console.log("None, ", suggestion);
+        break;
+      }
+    }
+    setSubmitting(false);
+    setSuggestion("");
+    resetForm();
   };
 
   const validationSchema = Yup.object().shape({
@@ -56,7 +93,7 @@ const PlaylistRequestForm = () => {
                     let message;
                     switch (e.target.value) {
                       case "collaborator":
-                        message = "Contact (Email or Phone Number)";
+                        message = "Email address";
                         break;
                       case "songSuggestion":
                         message = "Song and moment";

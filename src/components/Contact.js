@@ -2,11 +2,16 @@ import React from "react";
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
 
-function Contact({ contact, setSpreadsheetValue, toggleRSVP, setEdit }) {
+function Contact({ contact, setSpreadsheetValue, setEdit }) {
   const handleCheckboxClick = () => {
-    toggleRSVP();
-    setSpreadsheetValue(contact);
-    console.log("hello world");
+    const { firstName, lastName, email, rsvp } = contact;
+    const newContact = {
+      firstName,
+      lastName,
+      email,
+      rsvp: !rsvp,
+    };
+    setSpreadsheetValue(newContact);
   };
 
   return (

@@ -1,17 +1,26 @@
 import React from "react";
 import Checkbox from "@mui/material/Checkbox";
 import LinearProgress from "@mui/material/LinearProgress";
+import Slider from "@mui/material/Slider";
 
 const RegistryItem = ({
-  name,
+  handleSelectItem,
   imageURL,
-  productURL,
-  price,
-  currentGift,
-  onSelect,
   isSelected,
+  name,
+  percentageContributed,
+  price,
+  productURL,
+  totalDollarContribution,
+  updatePercentageContributed,
 }) => {
-  const progress = Math.min((currentGift / price) * 100, 100);
+  const progress = Math.min((totalDollarContribution / price) * 100, 100);
+
+  const handleSliderClick = () => {
+    if (!isSelected) {
+      handleSelectItem(name);
+    }
+  };
 
   return (
     <div
@@ -49,7 +58,14 @@ const RegistryItem = ({
             height: "13px",
           }}
           checked={isSelected}
-          onChange={() => onSelect(name)}
+          onChange={() => {
+            handleSelectItem(name);
+            if (isSelected) {
+              updatePercentageContributed(0, name);
+            } else {
+              updatePercentageContributed(100, name);
+            }
+          }}
         />
 
         <h3>
@@ -73,7 +89,7 @@ const RegistryItem = ({
         <img
           src={imageURL}
           alt={name}
-          style={{ maxHeight: "275px", maxWidth: "100%" }}
+          style={{ height: "275px", maxWidth: "100%" }}
         />
       </div>
       <div>
@@ -89,6 +105,26 @@ const RegistryItem = ({
             },
           }}
         />
+        <div onClick={handleSliderClick}>
+          <Slider
+            defaultValue={100}
+            value={percentageContributed}
+            onChange={(event) => {
+              updatePercentageContributed(event.target.value, name);
+            }}
+            sx={{
+              height: "7px",
+              borderRadius: "7px",
+            }}
+            disabled={!isSelected}
+            aria-labelledby="continuous-slider"
+            valueLabelDisplay="auto"
+            step={1}
+            marks
+            min={0}
+            max={100}
+          />
+        </div>
       </div>
     </div>
   );

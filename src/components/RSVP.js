@@ -21,7 +21,6 @@ const RSVP = () => {
 
   const unfilteredEmail = queryParams.get("email");
   const initEmail = unfilteredEmail === "null" ? "" : unfilteredEmail;
-  const [googleSheetIndex, setGoogleSheetIndex] = useState(0);
   const [isEditingContact, setIsEditingContact] = useState(false);
   let sheetContact = {
     firstName: "",
@@ -32,82 +31,67 @@ const RSVP = () => {
   const [contact, setContact] = useState(sheetContact);
 
   const setSpreadsheetValue = async (newValue) => {
-    // const credentials = process.env.GOOGLE_APPLICATION_CREDENTIALS;
-    // const payload = {
-    //   iss: credentials.client_email,
-    //   sub: credentials.client_email,
-    //   aud: "https://sheets.googleapis.com/", // Audience should be the API endpoint
-    //   exp: Math.floor(Date.now() / 1000) + 3600, // Token expiration time (1 hour)
-    //   iat: Math.floor(Date.now() / 1000),
-    // };
-
-    // const privateKey = credentials.private_key;
-    // const signedJWT = jwt?.sign(payload, privateKey, { algorithm: "RS256" });
-
-    // const RANGE = `Sheet1!A${googleSheetIndex}:D${googleSheetIndex}`; // Update columns A-D
-    // const queryURL = `https://sheets.googleapis.com/v4/spreadsheets/${process.env.SHEET_ID}/values/${RANGE}?valueInputOption=RAW`;
-
-    // Request body containing the data to append
-    const requestBody = {
-      values: [
-        [contact.firstName, contact.lastName, contact.email, contact.rsvp],
-      ],
-    };
-
     try {
-      // const response = await axios.post(queryURL, { 
-      //   Authorization: signedJWT, 
-      //   data: JSON.stringify(requestBody) 
-      // });
-
-      // console.log(response);
-      // if (!response.ok) {
-      //   throw new Error("Failed to update spreadsheet");
-      // }
-
+      await fetch(`${process.env.baseURL}/users?userEmail=${contact.email}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newValue),
+      })
+        .then(function (response) {
+          // Parse the data into a useable format using `.json()`
+          return response.json();
+        })
+        .then(async function () {
+          try {
+            await fetch(
+              `${process.env.baseURL}/users?userEmail=${contact.email}`
+            )
+              .then(function (response) {
+                // Parse the data into a useable format using `.json()`
+                return response.json();
+              })
+              .then(function (foundUser) {
+                // `data` is the parsed version of the JSON returned from the above endpoint.
+                setContact({
+                  firstName: (foundUser && foundUser[0]) ?? "",
+                  lastName: (foundUser && foundUser[1]) ?? "",
+                  email: (foundUser && foundUser[2]) ?? "",
+                  rsvp: (foundUser && foundUser[3]) === "TRUE" ?? false,
+                });
+              });
+          } catch (error) {
+            console.error("Error fetching data:", error);
+          }
+        });
     } catch (error) {
-    console.error('Error updating spreadsheet:', error);
-  }
+      console.error("Error fetching data:", error);
+    }
   };
 
   useEffect(() => {
-    async function fetchDataFromGoogleSheet() {
+    async function fetchUser() {
       try {
-        const response = await fetch(
-          `https://sheets.googleapis.com/v4/spreadsheets/${process.env.SHEET_ID}/values/Sheet1!A2:D99?key=${process.env.GOOGLE_API_KEY}`
-        );
-
-        // Parse response as JSON
-        const rows = (await response.json())?.values;
-        
-        const currentContactIndex = rows?.findIndex(
-          (row) => row[2] === contact?.email
-        );
-        setGoogleSheetIndex(() => currentContactIndex);
-        const matchedRow = rows[currentContactIndex];
-
-        setContact({
-          firstName: (matchedRow && matchedRow[0]) ?? "",
-          lastName: (matchedRow && matchedRow[1]) ?? "",
-          email: initEmail,
-          rsvp: (matchedRow && matchedRow[3]) === "TRUE" ?? false,
-        });
+        await fetch(`${process.env.baseURL}/users?userEmail=${contact.email}`)
+          .then(function (response) {
+            // Parse the data into a useable format using `.json()`
+            return response.json();
+          })
+          .then(function (foundUser) {
+            // `data` is the parsed version of the JSON returned from the above endpoint.
+            setContact({
+              firstName: (foundUser && foundUser[0]) ?? "",
+              lastName: (foundUser && foundUser[1]) ?? "",
+              email: initEmail,
+              rsvp: (foundUser && foundUser[3]) === "TRUE" ?? false,
+            });
+          });
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     }
 
-    fetchDataFromGoogleSheet();
-  }, [contact.email, googleSheetIndex, initEmail]);
-
-  const toggleRSVP = () => {
-    setContact({
-      firstName: contact.firstName,
-      lastName: contact.lastName,
-      email: contact.email,
-      rsvp: !contact.rsvp,
-    });
-  };
+    fetchUser();
+  }, [contact.email, initEmail]);
 
   const setEditTrue = () => {
     setIsEditingContact(true);
@@ -120,7 +104,6 @@ const RSVP = () => {
         <Contact
           contact={contact}
           setSpreadsheetValue={setSpreadsheetValue}
-          toggleRSVP={toggleRSVP}
           setEdit={setEditTrue}
         />
       )}
@@ -153,8 +136,7 @@ const RSVP = () => {
               }?${queryParams.toString()}`;
               window.history.pushState({}, "", newUrl);
 
-              await new Promise((r) => setTimeout(r, 500));
-              alert(JSON.stringify(values, null, 2));
+              await setSpreadsheetValue({ ...values, rsvp: contact.rsvp });
             }}
           >
             {({ isValid }) => (
