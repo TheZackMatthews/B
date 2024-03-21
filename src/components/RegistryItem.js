@@ -19,6 +19,7 @@ const RegistryItem = ({
   const handleSliderClick = () => {
     if (!isSelected) {
       handleSelectItem(name);
+      updatePercentageContributed(100, name);
     }
   };
 

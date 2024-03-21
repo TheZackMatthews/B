@@ -199,3 +199,9 @@ nav p {
 .tab-expanding li {
   width: 100%;
 }
+
+/* Solves a bug with react-strict-mode and paypal buttons */
+.paypal-buttons:not(:first-child) {
+  visibility: hidden;
+  max-height: 0;
+}
