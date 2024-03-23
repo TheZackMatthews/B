@@ -8,7 +8,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Typography from "@mui/material/Typography";
 import RegistryItem from "./RegistryItem";
 import NavigationMenu from "./NavigationMenu";
-import { PayPalButton } from "react-paypal-button-v2";
+import { PayPalButton } from "react-paypal-button-v2"; // Outdated react dependency, should be replaced with another package
 import dotenv from "dotenv";
 
 dotenv.config();

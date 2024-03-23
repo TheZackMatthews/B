@@ -41,6 +41,7 @@ const RegistryItem = ({
       <div style={{ display: "flex", flexDirection: "row-reverse" }}>
         <Checkbox
           color="primary"
+          disableRipple={true} // Disable click animation
           sx={{
             "&.Mui-checked": {
               color: "green",

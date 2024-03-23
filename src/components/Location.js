@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import NavigationMenu from "./NavigationMenu";
+import LodgeCarousel from "./LodgeCarousel";
 
 const Location = () => {
   const [selectedTravelMethod, setSelectedTravelMethod] = useState(null);
@@ -7,6 +8,7 @@ const Location = () => {
     <div className="banner-content banner-content-travel">
       <NavigationMenu />
       <div style={{ height: "5vh" }}></div>
+      <h2>Getting to Pine Rivers Ranch </h2>
       <div style={{ width: "80vw" }}>
         <div>
           <ul className="nav-tabs" role="tablist">
@@ -69,6 +71,7 @@ const Location = () => {
             selectedTravelMethod !== null ? "expanded" : ""
           }`}
         >
+          {/* TODO: Replace tab-expanding with MUI Collapse component */}
           {selectedTravelMethod === "car" && (
             <div
               className="tab-expanding"
@@ -101,8 +104,8 @@ const Location = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="https://maps.google.com/maps?f=d&amp;hl=en&amp;geocode=&amp;time=&amp;date=&amp;ttype=&amp;saddr=spokane&amp;daddr=leavenworth,+wa&amp;sll=46.555083,-121.78894&amp;sspn=2.613995,3.702393&amp;ie=UTF8&amp;ll=46.55886,-121.777954&amp;spn=0.57288,3.24722&amp;om=1&amp;source=embed">
-                    <strong>From Spokane, WA</strong>
+                  <a href="https://www.google.com/maps/dir/Wenatchee,+Washington+98801/Leavenworth,+Washington+98826/@47.5088645,-121.1506683,9z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x549bcc43dd054f43:0x746e63024633d190!2m2!1d-120.3103494!2d47.4234599!1m5!1m1!1s0x549a4d92a4f8f98d:0xa14f95fb0abfef7e!2m2!1d-120.6614765!2d47.5962326?hl=en&entry=ttu">
+                    <strong>From Wenatchee, WA</strong>
                   </a>
                 </li>
               </ul>
@@ -274,7 +277,6 @@ const Location = () => {
 
       <div style={{ height: "5vh" }}></div>
 
-      <h3>Getting to Pine Rivers Ranch </h3>
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2681.206558720723!2d-120.71566258443694!3d47.77744258415387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549b00663132b9d9%3A0x9f420f7253b536a!2sPine%20River%20Ranch%20Bed%20%26%20Breakfast%20and%20Wedding%20Destination!5e0!3m2!1sen!2sus!4v1644435394679!5m2!1sen!2sus"
         width="90%"
@@ -284,14 +286,15 @@ const Location = () => {
         loading="lazy"
       ></iframe>
 
-      <h3>Lodging</h3>
+      <h3 style={{ marginTop: "3em" }}>Nearby Lodging</h3>
+      <LodgeCarousel />
       <a
         href="https://leavenworth.org/lodging-results/hotels-motels/"
         target="_blank"
         rel="noreferrer"
         className="btn"
       >
-        Leavenworth Hotel Results
+        See All Leavenworth Hotels
       </a>
       <div style={{ height: "5vh" }}></div>
     </div>
