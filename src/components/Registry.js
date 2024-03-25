@@ -94,7 +94,6 @@ const RegistryPage = () => {
             currency_code: "USD",
             value: val,
           },
-          shipping_preference: "NO_SHIPPING", // Specify no shipping required
         },
       ],
     });
@@ -215,6 +214,7 @@ const RegistryPage = () => {
           >
             <PayPalButtons
               disabled={donationAmount <= 0}
+              forceReRender={[donationAmount]}
               fundingSource={undefined}
               createOrder={(data, actions) => createOrder(actions, donationAmount)}
               onApprove={(details, data) => {
