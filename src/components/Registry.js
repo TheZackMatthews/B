@@ -8,7 +8,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Typography from "@mui/material/Typography";
 import RegistryItem from "./RegistryItem";
 import NavigationMenu from "./NavigationMenu";
-import { PayPalButton } from "react-paypal-button-v2"; // Outdated react dependency, should be replaced with another package
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -71,6 +71,7 @@ const RegistryPage = () => {
     }
 
     fetchDataFromGoogleSheet();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSelectItem = (name) => {
@@ -82,6 +83,20 @@ const RegistryPage = () => {
         // If the item is not selected, add it
         return [...prevItems, name];
       }
+    });
+  };
+
+  const createOrder = (actions, val) => {
+    return actions.order.create({
+      purchase_units: [
+        {
+          amount: {
+            currency_code: "USD",
+            value: val,
+          },
+          shipping_preference: "NO_SHIPPING", // Specify no shipping required
+        },
+      ],
     });
   };
 
@@ -184,48 +199,58 @@ const RegistryPage = () => {
             type="number"
             value={donationAmount}
             onChange={(event) => {
-              setDonationAmount(event.target.value);
+              const amount = parseFloat(event.target.value);
+              if (!isNaN(amount) && amount > 0) {
+                setDonationAmount(amount);
+              } else {
+                setDonationAmount(0); // Set to 0 if the input is not a valid number
+              }
+
             }}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
             sx={{ mb: 5 }}
           />
-
-          <PayPalButton
-            amount={donationAmount.toString()}
-            shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-            onError={(error) => {
-              console.log(error);
-              alert("Error processing transaction");
-            }}
-            onSuccess={(details, data) => {
-              const donationAmounts = selectedItems.map((item) =>
-                (
-                  (donationAmount * totalContributions[item]) /
-                  userTotalContribution
-                ).toFixed(2)
-              );
-              closeModal();
-              return fetch(
-                `${process.env.baseURL}/paypal-transaction-complete`,
-                {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({
-                    amounts: donationAmounts,
-                    itemNames: selectedItems,
-                    payerEmail: email,
-                  }),
-                }
-              ).then(
+          <PayPalScriptProvider
+            options={{ "client-id": process.env.PAYPAL_CLIENT_ID }}
+          >
+            <PayPalButtons
+              disabled={donationAmount <= 0}
+              fundingSource={undefined}
+              createOrder={(data, actions) => createOrder(actions, donationAmount)}
+              onApprove={(details, data) => {
+                const donationAmounts = selectedItems.map((item) =>
+                  (
+                    (donationAmount * totalContributions[item]) /
+                    userTotalContribution
+                  ).toFixed(2)
+                );
+                closeModal();
+                return fetch(
+                  `${process.env.baseURL}/paypal-transaction-complete`,
+                  {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      amounts: donationAmounts,
+                      itemNames: selectedItems,
+                      payerEmail: email,
+                    }),
+                  }
+                ).then(
+                  setTimeout(() => {
+                    window.location.reload();
+                  }, 3000)
+                );
+              }}
+              onError={(err) => {
+                console.error(err);
+                setIsModalOpen(false);
                 setTimeout(() => {
-                  window.location.reload();
-                }, 3000)
-              );
-            }}
-            options={{
-              clientId: process.env.PAYPAL_CLIENT_ID,
-            }}
-          />
+                  setIsModalOpen(true);
+                }, 500);
+              }}
+            ></PayPalButtons>
+          </PayPalScriptProvider>
           <Button
             color="primary"
             size="large"

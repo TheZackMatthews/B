@@ -15,7 +15,7 @@ const Home = () => {
       <div className="banner-content">
         <NavigationMenu />
         <div style={{ height: "15vh" }}></div>
-        <h1 className="Title">Zack & Lane</h1>
+        <h1 className="title">Zack & Lane</h1>
         <Link to={`/rsvp?email=${email}`}>
         <Button
             variant="contained"

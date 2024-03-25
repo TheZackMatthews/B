@@ -9,7 +9,7 @@ body {
   font-size: 120%;
 }
 
-.Title {
+.title {
   text-align: center;
   font-family: 'Dancing Script', cursive;
   position: relative;
@@ -46,16 +46,13 @@ nav {
   text-align: center;
 }
 
-ul {
+ul.nav-tabs, nav ul {
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
   align-items: center;
-  margin: 0;
-}
-
-nav ul {
   justify-content: space-around;
+  margin: 0;
+  padding: 0;
 }
 
 nav li {
@@ -133,10 +130,6 @@ nav p {
   background-color: #555;
 }
 
-.banner-content-travel {
-  transition: none;
-}
-
 .spotify-embed {
   padding: 2em;
   border: none;
@@ -200,25 +193,4 @@ nav p {
 
 .faq-question {
   padding-top: 2.5rem;
-}
-
-.tab-content {
-  padding: 1em;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease-out;
-}
-
-.tab-content.expanded {
-  max-height: 900px;
-}
-
-.tab-expanding li {
-  width: 100%;
-}
-
-/* Solves a bug with react-strict-mode and paypal buttons */
-.paypal-buttons:not(:first-child) {
-  visibility: hidden;
-  max-height: 0;
 }
