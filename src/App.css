@@ -17,7 +17,7 @@ body {
 }
 
 .banner-content {
-  background-image: url('../public/kiss.jpeg');
+  background-image: url('https://res.cloudinary.com/dkcd1a9ba/image/upload/e_gen_restore/v1711512661/kiss_slg4nj.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -27,7 +27,7 @@ body {
 }
 
 .banner-content-travel {
-  background-image: url('../public/AdventureBlanketLane.jpg');
+  background-image: url('https://res.cloudinary.com/dkcd1a9ba/image/upload/AdventureBlanketLane_ltetto');
   color: #333;
 }
 
