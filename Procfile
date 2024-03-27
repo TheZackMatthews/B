@@ -1,1 +1,0 @@
-web: npm start --max_old_space_size=500 --optimize_for_size --gc_interval=100
