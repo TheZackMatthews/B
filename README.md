@@ -16,7 +16,7 @@ To run this project locally, follow these steps:
 
     ```
     REACT_APP_BASE_URL=URL_of_the_node_backend_service_powering_the_app's_requests
-    REACT_APP_PAYPAL_CLIENT_ID=Your_PayPal_Client_ID
+    REACT_APP_REACT_APP_PAYPAL_CLIENT_ID=Your_REACT_APP_PAYPAL_CLIENT_ID
     ```
 
 4. Start the development server with `npm start`.
@@ -26,7 +26,7 @@ To run this project locally, follow these steps:
 This project requires the following environment variables:
 
 - **REACT_APP_BASE_URL**: This is the URL of the node backend service powering the app's requests.
-- **REACT_APP_PAYPAL_CLIENT_ID**: This is used to collect donations on the registry page.
+- **REACT_APP_REACT_APP_PAYPAL_CLIENT_ID**: This is used to collect donations on the registry page.
 
 ## Screenshots
 

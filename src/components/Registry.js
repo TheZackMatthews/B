@@ -35,7 +35,7 @@ const RegistryPage = () => {
   useEffect(() => {
     async function fetchDataFromGoogleSheet() {
       try {
-        const response = await fetch(`${process.env.baseURL}/registry`);
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/registry`);
         const rows = await response.json();
 
         const percentContributions = rows.reduce((acc, [productName]) => {
@@ -210,7 +210,7 @@ const RegistryPage = () => {
             sx={{ mb: 5 }}
           />
           <PayPalScriptProvider
-            options={{ "client-id": process.env.PAYPAL_CLIENT_ID }}
+            options={{ "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID }}
           >
             <PayPalButtons
               disabled={donationAmount <= 0}
@@ -226,7 +226,7 @@ const RegistryPage = () => {
                 );
                 closeModal();
                 return fetch(
-                  `${process.env.baseURL}/paypal-transaction-complete`,
+                  `${process.env.REACT_APP_BASE_URL}/paypal-transaction-complete`,
                   {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

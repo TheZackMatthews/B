@@ -12,8 +12,8 @@ const PlaylistRequestForm = () => {
   const [requestHeading, setRequestHeading] = useState("");
   const [suggestion, setSuggestion] = useState("");
   useEffect(() => {
-    console.log("baseURL: "+ process.env.baseURL);
-    console.log("ClientID: "+process.env.PAYPAL_CLIENT_ID);
+    console.log("REACT_APP_BASE_URL: " + process.env.REACT_APP_BASE_URL);
+    console.log("ClientID: " + process.env.REACT_APP_PAYPAL_CLIENT_ID);
   }, []);
   
   const location = useLocation();
@@ -23,7 +23,7 @@ const PlaylistRequestForm = () => {
   const handleSubmit = async (values, {setSubmitting, resetForm}) => {
     switch (values.selection) {
       case "collaborator": {
-        await fetch(`${process.env.baseURL}/music/collaborator`, {
+        await fetch(`${process.env.REACT_APP_BASE_URL}/music/collaborator`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: suggestion }),
@@ -35,7 +35,7 @@ const PlaylistRequestForm = () => {
       }
       case "generalSuggestion":
         case "songSuggestion": {
-        await fetch(`${process.env.baseURL}/music/song`, {
+        await fetch(`${process.env.REACT_APP_BASE_URL}/music/song`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ suggestion: suggestion, email: initEmail }),

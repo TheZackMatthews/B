@@ -34,7 +34,7 @@ const RSVP = () => {
 
   const setSpreadsheetValue = async (newValue) => {
     try {
-      await fetch(`${process.env.baseURL}/users?userEmail=${contact.email}`, {
+      await fetch(`${process.env.REACT_APP_BASE_URL}/users?userEmail=${contact.email}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newValue),
@@ -46,7 +46,7 @@ const RSVP = () => {
         .then(async function () {
           try {
             await fetch(
-              `${process.env.baseURL}/users?userEmail=${contact.email}`
+              `${process.env.REACT_APP_BASE_URL}/users?userEmail=${contact.email}`
             )
               .then(function (response) {
                 // Parse the data into a useable format using `.json()`
@@ -74,7 +74,7 @@ const RSVP = () => {
     async function fetchUser() {
       try {
         const response = await fetch(
-          `${process.env.baseURL}/users?userEmail=${contact.email}`
+          `${process.env.REACT_APP_BASE_URL}/users?userEmail=${contact.email}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch user data");
