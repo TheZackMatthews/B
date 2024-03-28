@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import Button from "@mui/material/Button";
@@ -11,7 +11,11 @@ dotenv.config();
 const PlaylistRequestForm = () => {
   const [requestHeading, setRequestHeading] = useState("");
   const [suggestion, setSuggestion] = useState("");
-
+  useEffect(() => {
+    console.log("baseURL: "+ process.env.baseURL);
+    console.log("ClientID: "+process.env.PAYPAL_CLIENT_ID);
+  }, []);
+  
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const initEmail = queryParams.get("email");
