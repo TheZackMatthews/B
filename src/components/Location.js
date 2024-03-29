@@ -3,8 +3,18 @@ import NavigationMenu from "./NavigationMenu";
 import LodgeCarousel from "./LodgeCarousel";
 import Collapse from "@mui/material/Collapse";
 
+
 const Location = () => {
   const [selectedTravelMethod, setSelectedTravelMethod] = useState(null);
+  const collapseStyle = {
+    color: "white",
+    background: "rgba(0, 0, 0, 0.2)",
+    borderRadius: "30px",
+    padding: "2em",
+    margin: "5vh 0",
+    alignItems: "flex-start",
+  };
+
   return (
     <div className="banner-content banner-content-travel">
       <NavigationMenu />
@@ -76,7 +86,7 @@ const Location = () => {
             in={selectedTravelMethod === "car"}
             timeout="auto"
             unmountOnExit
-            sx={{ color: "white", alignItems: "flex-start" }}
+            sx={collapseStyle}
           >
             <p>By Car</p>
             <p>
@@ -112,7 +122,7 @@ const Location = () => {
             in={selectedTravelMethod === "bus"}
             timeout="auto"
             unmountOnExit
-            sx={{ color: "white" }}
+            sx={collapseStyle}
           >
             <p>By Bus</p>
             <p>
@@ -190,7 +200,7 @@ const Location = () => {
             in={selectedTravelMethod === "train"}
             timeout="auto"
             unmountOnExit
-            sx={{ color: "white", alignItems: "flex-start" }}
+            sx={collapseStyle}
           >
             <p style={{ lineHeight: "1.3" }}>By Train</p>
             <ul>
@@ -233,7 +243,7 @@ const Location = () => {
             in={selectedTravelMethod === "air"}
             timeout="auto"
             unmountOnExit
-            sx={{ color: "white" }}
+            sx={collapseStyle}
           >
             <p>By Air</p>
             <p>
