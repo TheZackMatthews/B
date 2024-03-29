@@ -88,8 +88,7 @@ const FAQ = () => {
             unmountOnExit
           >
             <p>
-              Answer to the question "What time does the reception end?" goes
-              here. {/* TODO */}
+              The reception will end at 10:00 PM. Dinner will be served between 5:00 and 6:00 PM.
             </p>
           </Collapse>
         </div>
