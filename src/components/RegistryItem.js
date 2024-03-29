@@ -13,6 +13,7 @@ const RegistryItem = ({
   productURL,
   totalDollarContribution,
   updatePercentageContributed,
+  showSlider,
 }) => {
   const progress = Math.min((totalDollarContribution / price) * 100, 100);
 
@@ -117,6 +118,7 @@ const RegistryItem = ({
             sx={{
               height: "7px",
               borderRadius: "7px",
+              visibility: showSlider? "visible" : "hidden",
             }}
             disabled={!isSelected}
             aria-labelledby="continuous-slider"

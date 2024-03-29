@@ -125,11 +125,12 @@ const RegistryPage = () => {
             {...item}
             handleSelectItem={handleSelectItem}
             isSelected={selectedItems.includes(item.name)}
+            showSlider={selectedItems.length > 1}
           />
         ))}
       </div>
       <div className="selected-items" style={{ width: "90%" }}>
-        <h2>Selected Items:</h2>
+        <h2>How your gift will be split:</h2>
         <ul
           style={{
             display: "flex",

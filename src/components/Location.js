@@ -33,7 +33,7 @@ const Location = () => {
               }
             >
               <div role="tab" id="bycar" tabIndex="1">
-                <p>By Car</p>
+                <p tabIndex="-1">By Car</p>
               </div>
             </li>
             <li
@@ -46,7 +46,7 @@ const Location = () => {
               }
             >
               <div role="tab" id="bybus" tabIndex="2">
-                <p>By Bus</p>
+                <p tabIndex="-1">By Bus</p>
               </div>
             </li>
             <li
@@ -59,7 +59,7 @@ const Location = () => {
               }
             >
               <div role="tab" id="bytrain" tabIndex="3">
-                <p>By Train</p>
+                <p tabIndex="-1">By Train</p>
               </div>
             </li>
             <li
@@ -72,7 +72,7 @@ const Location = () => {
               }
             >
               <div role="tab" id="byair" tabIndex="4">
-                <p>By Air</p>
+                <p tabIndex="-1">By Air</p>
               </div>
             </li>
           </ul>
