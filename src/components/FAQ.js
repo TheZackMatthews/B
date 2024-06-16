@@ -88,7 +88,8 @@ const FAQ = () => {
             unmountOnExit
           >
             <p>
-              The reception will end at 10:00 PM. Dinner will be served between 5:00 and 6:00 PM.
+              The reception will end at 10:00 PM. Dinner will be served between
+              5:00 and 6:00 PM.
             </p>
           </Collapse>
         </div>

@@ -3,8 +3,8 @@
 
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
-  color: #fff;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  color: #111;
   background-color: #ddd;
   font-size: 120%;
 }
@@ -17,7 +17,7 @@ body {
 }
 
 .banner-content {
-  background-image: url('https://res.cloudinary.com/dkcd1a9ba/image/upload/e_gen_restore/v1711512661/kiss_slg4nj.jpg');
+  background-image: url('https://res.cloudinary.com/dkcd1a9ba/image/upload/v1718575642/tiny-bellingham-engagement-photographer-katheryn-moran-whatcom-falls-park-zack-lane-2024-50_yea9rw.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -82,7 +82,7 @@ nav li {
 }
 
 a {
-  color: #fff;
+  color: #333;
   text-decoration: none;
 }
 
@@ -128,6 +128,12 @@ nav p {
   -webkit-transition: background 0.3s; /* For Safari 3.0 to 6.0 */
   transition: background 0.3s; /* For modern browsers */
   background-color: #555;
+}
+
+.MuiCollapse-root {
+  background-color: rgba(204, 204, 204, 0.5);
+  border-radius: 5px;
+  padding: 0 25px;
 }
 
 .spotify-embed {

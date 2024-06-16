@@ -14,7 +14,7 @@ const Home = () => {
     <div>
       <div className="banner-content">
         <NavigationMenu />
-        <div style={{ height: "15vh" }}></div>
+        <div style={{ height: "35vh" }}></div>
         <h1 className="title">Zack & Lane</h1>
         <Link to={`/rsvp?email=${email}`}>
         <Button
@@ -22,7 +22,7 @@ const Home = () => {
             color="primary"
             size="large"
             className="edit-button"
-            style={{ background: "#333" }}
+            style={{ background: "#333", marginTop: "10px" }}
           >RSVP Now</Button>
         </Link>
         <p className="banner-subtext">

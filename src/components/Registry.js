@@ -53,7 +53,6 @@ const RegistryPage = () => {
     justifyContent: "space-between",
     borderRadius: "10px",
     padding: "10px",
-    margin: "10px",
     maxWidth: "320px",
     height: "100%",
   };
@@ -63,16 +62,31 @@ const RegistryPage = () => {
     <div className="banner-content">
       <NavigationMenu />
       <h2>Registry</h2>
-      <p style={{ width: "90%", marginBottom: "300px" }}>
+      <p
+        style={{
+          width: "90%",
+          marginBottom: "300px",
+          backgroundColor: "rgba(204, 204, 204, 0.5)",
+          borderRadius: "5px",
+          padding: "25px",
+        }}
+      >
         We are deeply grateful to have our beloved friends and family join us
         for this special occasion. Your presence is the greatest gift, and we
-        are truly honored by your support. While no gifts are necessary, if you
-        feel inclined to spend on our behalf, we kindly ask that you donate to a
-        charity you believe in. Your generosity towards others will mean the
-        world to us.
+        are truly honored by your support. 
+        <br />
+        <br />
+        While no gifts are necessary, if you feel inclined to spend on our
+        behalf, we kindly ask that you donate to a charity you believe in. Your
+        generosity towards others will mean the world to us.
       </p>
       <div
-        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "40px",
+        }}
       >
         {charities.map((charity, index) => (
           <div>
